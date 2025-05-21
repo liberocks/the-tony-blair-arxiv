@@ -1,0 +1,11 @@
+{% for session in sessions %}
+<li
+  class="truncate text-gray-600 hover:text-gray-900 cursor-pointer"
+  hx-get="/api/v1/history/{{ session.id }}"
+  hx-target="#chat-box"
+  hx-swap="innerHTML"
+  x-on:click="sessionId = {{ session.id }}"
+>
+  {{ session.title }}
+</li>
+{% endfor %}

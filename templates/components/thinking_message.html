@@ -1,0 +1,13 @@
+<div class="mb-2 flex flex-col items-end">
+    <p class="border-teal-500 bg-gray-50 border text-gray-900 p-3 rounded-md w-fit max-w-sm ml-auto">
+        {{ user_message }}
+    </p>
+</div>
+<div id="bot-message-{{ bot_message_id }}" class="mb-2 flex flex-col items-start"
+     hx-get="{{ url_for('get_bot_reply', bot_message_id=bot_message_id) }}"
+     hx-trigger="load"
+     hx-swap="innerHTML">
+    <p class="bg-gray-200 text-gray-800 p-3 rounded-lg shadow animate-pulse" style="max-width: 70%;">
+        Thinking...
+    </p>
+</div>

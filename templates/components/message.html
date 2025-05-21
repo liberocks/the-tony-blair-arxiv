@@ -1,0 +1,13 @@
+<div
+  class="mb-4"
+  x-init="sessionId = '{{ session_id }}'; $dispatch('message-sent', { session: '{{ session_id }}' })"
+>
+  <div
+    class="border-teal-500 bg-gray-50 border text-gray-900 p-3 rounded-md w-fit max-w-sm ml-auto"
+  >
+    <p>{{ user }}</p>
+  </div>
+  <div class="text-gray-700 p-3 rounded-md w-fit max-w-xl mt-2">
+    <p>{{ bot }}</p>
+  </div>
+</div>

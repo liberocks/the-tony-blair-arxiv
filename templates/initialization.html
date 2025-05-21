@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>API Key Initialization</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body
+    class="h-screen bg-white text-gray-900 flex justify-center items-center"
+  >
+    <div class="w-full max-w-md p-8 bg-white rounded-lg border-gray-300 border">
+      <h1 class="text-2xl font-bold mb-6 text-center">
+        API Key Initialization
+      </h1>
+      <p class="mb-4 text-gray-400 text-center">
+        Please provide your API keys to initialize the application
+      </p>
+
+      <form action="/initialize" method="POST">
+        <div class="mb-4">
+          <label for="openai_api_key" class="block mb-2">OpenAI API Key</label>
+          <input
+            type="password"
+            id="openai_api_key"
+            name="openai_api_key"
+            required
+            class="w-full bg-white rounded px-4 py-2 text-gray-900 focus:outline-none focus:ring-2 focus:ring-teal-500 border border-gray-300"
+            placeholder="sk-..."
+          />
+        </div>
+
+        <div class="mb-6">
+          <label for="upstash_token" class="block mb-2">Upstash Token</label>
+          <input
+            type="password"
+            id="upstash_token"
+            name="upstash_token"
+            required
+            class="w-full bg-white rounded px-4 py-2 text-gray-900 focus:outline-none focus:ring-2 focus:ring-teal-500 border border-gray-300"
+            placeholder="Enter your Upstash token"
+          />
+        </div>
+
+        <button
+          type="submit"
+          class="w-full bg-teal-600 py-2 rounded hover:bg-teal-700 transition text-white"
+        >
+          Initialize Application
+        </button>
+      </form>
+    </div>
+  </body>
+</html>

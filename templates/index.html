@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" x-data="{ sessionId: null }">
+  <head>
+    <meta charset="UTF-8" />
+    <title>ArXiv LLM</title>
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+      defer
+    ></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="h-screen bg-white text-gray-900 flex">
+    <!-- Sidebar -->
+    <div class="w-64 bg-white p-4 border-r border-gray-300 overflow-y-auto">
+      <div class="flex flex-row justify-between items-center mb-4">
+        <h1 class="text-xl">History</h1>
+        <button
+          class="bg-white text-gray-900 text-xs px-4 py-2 rounded hover:bg-gray-200 border border-gray-300"
+          hx-get="/new-session"
+          hx-target="#sidebar-list"
+          hx-swap="innerHTML"
+          hx-on:htmx:after-request="window.location.reload()"
+        >
+          New Session
+        </button>
+      </div>
+      <div
+        id="sidebar-list"
+        hx-trigger="newSessionCreated from:body"
+        hx-get="/sidebar"
+        hx-target="this"
+        hx-swap="innerHTML"
+      >
+        {% include "components/sidebar.html" %}
+      </div>
+    </div>
+
+    <!-- Main Chat Area -->
+    <div class="flex-1 flex flex-col">
+      <div class="flex-1 overflow-y-auto p-4" id="chat-box"></div>
+
+      <form
+        class="p-4 border-t border-gray-300 flex gap-2 bg-white"
+        hx-post="/api/v1/send-message"
+        hx-target="#chat-box"
+        hx-swap="beforeend"
+        hx-on:htmx:after-request="if(event.detail.successful) { htmx.find(this, '[name=message]').value = ''; }"
+      >
+        <input type="hidden" name="session_id" :value="sessionId" />
+        <input
+          type="text"
+          name="message"
+          required
+          class="flex-1 bg-white rounded px-4 py-2 text-gray-900 focus:outline-none border border-gray-300 focus:ring-2 focus:ring-teal-500"
+          placeholder="Send a message..."
+          x-ref="input"
+          @keydown.enter="$nextTick(() => $refs.input.value = '')"
+        />
+        <button
+          class="bg-teal-600 px-4 py-2 text-white rounded hover:bg-teal-700"
+        >
+          Send
+        </button>
+      </form>
+    </div>
+  </body>
+</html>

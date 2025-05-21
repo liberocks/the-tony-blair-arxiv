@@ -1,0 +1,17 @@
+<div x-init="sessionId = '{{ history_id }}'">
+  {% for msg in messages %}
+  <div class="mb-4">
+    {% if msg.is_user %}
+    <div
+      class="border-teal-500 bg-gray-50 border text-gray-900 p-3 rounded-md w-fit max-w-sm ml-auto"
+    >
+      <p>{{ msg.message }}</p>
+    </div>
+    {% else %}
+    <div class="text-gray-700 p-3 rounded-md w-fit max-w-xl mt-2">
+      <p>{{ msg.message }}</p>
+    </div>
+    {% endif %}
+  </div>
+  {% endfor %}
+</div>
