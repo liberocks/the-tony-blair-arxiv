@@ -280,7 +280,7 @@ def initialize():
 
 @app.route("/")
 def index():
-    if app.config["OPENAI_API_KEY"] is None or app.config["UPSTASH_TOKEN"] is None:
+    if openai_client is None or upstash_index is None:
         return render_template("initialization.html")
     sessions = History.query.order_by(History.id.desc()).all()
     return render_template("index.html", sessions=sessions)
