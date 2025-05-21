@@ -1,9 +1,9 @@
-# fly.toml app configuration file generated for the-tony-blair-arxiv on 2025-05-21T22:50:13+07:00
+# fly.toml app configuration file generated for the-tony-blair-arxiv-wild-waterfall-3174 on 2025-05-21T22:56:18+07:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = 'the-tony-blair-arxiv'
+app = 'the-tony-blair-arxiv-wild-waterfall-3174'
 primary_region = 'lhr'
 
 [build]
